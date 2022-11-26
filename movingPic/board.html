@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 50;
+            height: 50;
+        }
+        .div-wrapper {
+            position: relative;
+            height: 300px;
+            width: 300px;
+        }
+
+        .div-wrapper .i1 {
+            position: absolute;
+            left: 0;
+            bottom: 200px;
+        }
+        .div-wrapper .i2 {
+            position: absolute;
+            right: 0;
+            bottom: 200px;
+        }
+        .div-wrapper .i3 {
+            position: absolute;
+            bottom: 0;
+            right: 200px;
+        }
+        p{
+            color: blue;
+        }
+    </style>
+    <script>
+        var flag=0;
+        var widths=400;
+        var heights=400;
+        var inc=10;
+        var timer;
+        var im1,im2,im3;
+        
+    </script>
+</head>
+<body>
+    <div class="div-wrapper" style="width: 400px; height: 400px; border: 2px solid black;">
+        <img class="i1" src="icon1.gif "/>
+        <img class="i2" src="icon2.gif"/>
+        <img class="i3" src="TOP.JPG"/>
+    </div>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+
+    <button onclick="settimer(this)">go</button>
+    <button onclick="cleartimer()">reset</button>
+    <script>
+        function move(obj){
+            
+                
+                var bott;
+                    im1= document.getElementsByClassName('i1')[0];
+                bott=parseInt(getComputedStyle(im1).left.split("p")[0])+inc; 
+                im1.style.left=(bott+"px");
+                document.getElementById("p1").innerText=im1.outerHTML;
+
+
+                    im2= document.getElementsByClassName('i2')[0];
+                bott=parseInt(getComputedStyle(im2).right.split("p")[0])+inc;
+                im2.style.right=(bott+"px");
+                document.getElementById("p2").innerText=im2.outerHTML;
+
+                    im3= document.getElementsByClassName('i3')[0];
+                bott=parseInt(getComputedStyle(im3).bottom.split("p")[0])+inc;
+                im3.style.bottom=(bott+"px");
+                document.getElementById("p3").innerText=im3.outerHTML;
+                    
+                
+                    if(flag==0){
+                    inc=10;
+                    if(bott>=widths-40){
+                            inc-=10;
+                            flag=1;
+                    }
+                    }
+                    else{
+                        inc=-10;
+                        if(bott<=0){
+                            inc+=10;
+                            flag=0;
+                        }
+                    }
+                 
+
+
+        }
+        function settimer(obj){
+            if( obj.innerText=="stop"){
+                 obj.innerText="go";
+                 clearInterval(timer);
+            }
+            else{
+                obj.innerText="stop"
+                timer=setInterval(move,200,obj);
+            }
+            
+        
+
+        }
+        function cleartimer(){
+            im1.style.left="0px";
+            im2.style.right="0px";
+            im3.style.bottom="0px";
+            clearInterval(timer);
+        }
+        
+    </script>
+    
+</body>
+</html>

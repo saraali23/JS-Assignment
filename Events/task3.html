@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  onsubmit="confirms(this)">
+        <div><input type="text" value="name" name="fname"></div>
+        <br>
+        <div><input type="text" value="title" name="title"></div>
+        <br>
+        <div><input type="text" value="address" name="address"></div>
+        <br>
+        <div><input type="text" value="email" name="email"></div>
+        <br>
+        <div><input type="text" value="mobile" name="mobile"></div>
+        <br>
+        <div><input type="radio" name="gender" value="male"> Male<br></div>
+        <br>
+        <div><input type="radio" name="gender" value="female" checked> Female<br></div>
+        <br>
+        <div><input type="submit"></div>
+
+
+    </form>
+    <script>
+        var timeout=new Event("Timeout");
+        document.addEventListener("Timeout", () => {
+            setTimeout(function(){
+                alert("TIME OUT 30 SECONDS HAVE PASSED!");
+                location.assign("./empty.html");
+               
+                
+            },30000);
+        })
+        document.dispatchEvent(timeout);
+        function confirms(obj){
+            var p=confirm("Confirm Submission?");
+            if(p!=true){
+                return false;
+            }
+            else{
+                obj.action="./empty.html";
+
+
+            }
+        }
+    </script>
+</body>
+</html>

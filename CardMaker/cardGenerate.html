@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>CardMaker</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+        img {
+            width: 150px; 
+            height: 150px;
+           
+        }
+        div,h1 {
+           text-align: center;
+        }
+        button{
+            margin: auto;
+
+        }
+        
+        textarea {
+            width: 500px; 
+            height: 150px;  
+
+        }
+        h1{
+            background-color: orange;
+            color:blueviolet ;
+        }
+        
+        
+    </style>
+   
+    
+</head>
+<body>
+    <script>
+        var imgsrc;
+        var text;
+        var ch;
+        var di;
+        var imgnew2;
+        var imgnew;
+    </script>
+     
+   
+    <h1> Generate Get Well Soon Card</h1>
+    <div id="1">
+    <img  src="gws.jpg" />
+    <input name="choice" type="radio" checked/>
+    <img src="gws2.jpg" />
+    <input name="choice" type="radio"/>
+    <img src="gws3.jpg" />
+    <input  name="choice" type="radio"/>
+    </div>
+    <div id="2">
+    <img src="gwsf.jpg" />
+    <input name="choice" type="radio"/>
+    <img src="gwsf2.jpg" />
+    <input name="choice" type="radio"/>
+    <img src="gwsf2.png" />
+    <input name="choice" type="radio"/>
+    <img src="gwsf3.jpg" />
+    <input name="choice" type="radio"/>
+    </div>
+    <h1>Personel Message</h1>
+    <div>
+    <textarea></textarea>
+    </div>
+    <div>
+    <button onclick="saves()">Generate</button>
+    </div>
+    <script>
+        function saves(){
+           
+            var checked=0,i=0,x;
+            var choices=document.getElementsByName("choice");
+            while((!checked )&& i < choices.length){
+                if(choices[i].checked){
+                    x=choices[i].previousElementSibling;
+                    imgsrc=x.src.split("/")[3];
+                    checked=1;
+
+                }
+                i++;
+            }
+            
+            //let imgnew=x.cloneNode(true);
+           
+
+            
+             ch=window.open("", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+             ch.focus();
+             var bd=ch.window.document.createElement("body");
+             ch.document.write(" "); 
+            
+            di=ch.window.document.createElement("div");
+            imgnew2= ch.window.document.createElement("img");
+            imgnew2.src=x.src;
+            imgnew2.style.width="250px";
+            imgnew2.style.height="250px";
+            di.appendChild(imgnew2);
+           
+            
+            text=ch.document.createElement("p");
+            text.innerText=(document.getElementsByTagName("textarea")[0].value);
+           
+            di.appendChild(text); 
+
+
+            bd.appendChild(di);       
+            bd.style.backgroundColor="antiquewhite"; 
+            var bt=ch.window.document.createElement("button");   
+            bt.innerText="Close Preview";
+            bt.onclick=function(){ch.close();}
+            di.appendChild(bt);
+            ch.window.document.appendChild(bd);
+            ch.document.getElementsByTagName("div")[0].style.textAlign='center'; 
+             
+                   
+           
+          
+          
+
+            
+           
+
+           
+        }
+
+    </script>
+    
+</body>
+</html>
